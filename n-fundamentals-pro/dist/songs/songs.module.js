@@ -10,13 +10,24 @@ exports.SongsModule = void 0;
 const common_1 = require("@nestjs/common");
 const songs_controller_1 = require("./songs.controller");
 const songs_service_1 = require("./songs.service");
+const constant_1 = require("../common/constants/constant");
+const mockSongsService = {
+    findAll() {
+        return [{ id: 1, title: 'Lasting Lover' }];
+    }
+};
 let SongsModule = class SongsModule {
 };
 exports.SongsModule = SongsModule;
 exports.SongsModule = SongsModule = __decorate([
     (0, common_1.Module)({
         controllers: [songs_controller_1.SongsController],
-        providers: [songs_service_1.SongsService]
+        providers: [songs_service_1.SongsService,
+            {
+                provide: 'CONNECTION',
+                useValue: constant_1.connection
+            }
+        ]
     })
 ], SongsModule);
 //# sourceMappingURL=songs.module.js.map

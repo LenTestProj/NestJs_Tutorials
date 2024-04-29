@@ -17,18 +17,25 @@ const common_1 = require("@nestjs/common");
 const songs_service_1 = require("./songs.service");
 const create_song_dto_1 = require("./dto/create-song-dto");
 let SongsController = class SongsController {
-    constructor(songsService) {
+    constructor(songsService, connection) {
         this.songsService = songsService;
+        this.connection = connection;
+        console.log('This is connection string: ' + this.connection.CONNECTION_STRING);
     }
     ;
     create(createSongDTO) {
         return this.songsService.create(createSongDTO);
     }
     findAll() {
-        return this.songsService.findAll();
+        try {
+            return this.songsService.findAll();
+        }
+        catch (error) {
+            throw new common_1.HttpException("server error: ", common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-    findOne() {
-        return 'fetch song based on the id specified';
+    findOne(id) {
+        return 'fetch song based on the id specified: ' + typeof id;
     }
     update() {
         return 'Update song based on Id';
@@ -53,8 +60,9 @@ __decorate([
 ], SongsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(":id"),
+    __param(0, (0, common_1.Param)('id', new common_1.ParseIntPipe({ errorHttpStatusCode: common_1.HttpStatus.NOT_ACCEPTABLE }))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], SongsController.prototype, "findOne", null);
 __decorate([
@@ -71,6 +79,7 @@ __decorate([
 ], SongsController.prototype, "delete", null);
 exports.SongsController = SongsController = __decorate([
     (0, common_1.Controller)('songs'),
-    __metadata("design:paramtypes", [songs_service_1.SongsService])
+    __param(1, (0, common_1.Inject)('CONNECTION')),
+    __metadata("design:paramtypes", [songs_service_1.SongsService, Object])
 ], SongsController);
 //# sourceMappingURL=songs.controller.js.map

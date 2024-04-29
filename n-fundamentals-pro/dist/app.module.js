@@ -12,17 +12,31 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const songs_module_1 = require("./songs/songs.module");
 const logger_middleware_1 = require("./common/middleware/logger/logger.middleware");
+const songs_controller_1 = require("./songs/songs.controller");
+const DevConfigService_1 = require("./common/providers/DevConfigService");
+const devConfig = { port: 3000 };
+const proConfig = { port: 4000 };
 let AppModule = class AppModule {
     configure(consumer) {
-        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes({ path: 'songs', method: common_1.RequestMethod.POST });
+        consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes(songs_controller_1.SongsController);
     }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [songs_module_1.SongsModule],
+        imports: [songs_module_1.SongsModule,
+        ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [app_service_1.AppService, {
+                provide: DevConfigService_1.DevConfigService,
+                useClass: DevConfigService_1.DevConfigService
+            }, {
+                provide: 'CONFIG',
+                useFactory: () => {
+                    console.log("process env is: ", process.env.NODE_ENV);
+                    return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
+                }
+            }],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

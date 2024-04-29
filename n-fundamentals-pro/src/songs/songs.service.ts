@@ -13,6 +13,7 @@ export class SongsService {
     }
 
     findAll(){
+        throw new Error("Error in db while fetching reocrd");
         return this.songs;
     }
 }
