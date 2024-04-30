@@ -16,8 +16,8 @@ let DevConfigService = class DevConfigService {
         return this.DBHOST;
     }
 };
-exports.DevConfigService = DevConfigService;
-exports.DevConfigService = DevConfigService = __decorate([
+DevConfigService = __decorate([
     (0, common_1.Injectable)()
 ], DevConfigService);
+exports.DevConfigService = DevConfigService;
 //# sourceMappingURL=DevConfigService.js.map

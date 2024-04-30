@@ -44,7 +44,6 @@ let SongsController = class SongsController {
         return 'Delete song based on Id';
     }
 };
-exports.SongsController = SongsController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
@@ -77,9 +76,10 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], SongsController.prototype, "delete", null);
-exports.SongsController = SongsController = __decorate([
+SongsController = __decorate([
     (0, common_1.Controller)('songs'),
     __param(1, (0, common_1.Inject)('CONNECTION')),
     __metadata("design:paramtypes", [songs_service_1.SongsService, Object])
 ], SongsController);
+exports.SongsController = SongsController;
 //# sourceMappingURL=songs.controller.js.map

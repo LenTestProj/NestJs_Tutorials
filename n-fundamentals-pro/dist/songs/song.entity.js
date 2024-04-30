@@ -15,7 +15,6 @@ const playlist_entity_1 = require("../playlist/playlist.entity");
 const typeorm_1 = require("typeorm");
 let Song = class Song {
 };
-exports.Song = Song;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -45,7 +44,8 @@ __decorate([
     (0, typeorm_1.ManyToOne)(() => playlist_entity_1.Playlist, (playList) => playList.songs),
     __metadata("design:type", playlist_entity_1.Playlist)
 ], Song.prototype, "playList", void 0);
-exports.Song = Song = __decorate([
+Song = __decorate([
     (0, typeorm_1.Entity)('songs')
 ], Song);
+exports.Song = Song;
 //# sourceMappingURL=song.entity.js.map

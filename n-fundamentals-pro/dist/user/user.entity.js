@@ -12,9 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const playlist_entity_1 = require("../playlist/playlist.entity");
 const typeorm_1 = require("typeorm");
-class User {
-}
-exports.User = User;
+let User = class User {
+};
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -39,4 +38,8 @@ __decorate([
     (0, typeorm_1.OneToMany)(() => playlist_entity_1.Playlist, (playlist) => playlist.user),
     __metadata("design:type", Array)
 ], User.prototype, "playLists", void 0);
+User = __decorate([
+    (0, typeorm_1.Entity)('users')
+], User);
+exports.User = User;
 //# sourceMappingURL=user.entity.js.map

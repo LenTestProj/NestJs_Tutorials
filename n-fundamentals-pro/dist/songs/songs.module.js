@@ -18,8 +18,7 @@ const mockSongsService = {
 };
 let SongsModule = class SongsModule {
 };
-exports.SongsModule = SongsModule;
-exports.SongsModule = SongsModule = __decorate([
+SongsModule = __decorate([
     (0, common_1.Module)({
         controllers: [songs_controller_1.SongsController],
         providers: [songs_service_1.SongsService,
@@ -30,4 +29,5 @@ exports.SongsModule = SongsModule = __decorate([
         ]
     })
 ], SongsModule);
+exports.SongsModule = SongsModule;
 //# sourceMappingURL=songs.module.js.map

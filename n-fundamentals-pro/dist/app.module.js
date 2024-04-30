@@ -14,6 +14,12 @@ const songs_module_1 = require("./songs/songs.module");
 const logger_middleware_1 = require("./common/middleware/logger/logger.middleware");
 const songs_controller_1 = require("./songs/songs.controller");
 const DevConfigService_1 = require("./common/providers/DevConfigService");
+const typeorm_1 = require("@nestjs/typeorm");
+const song_entity_1 = require("./songs/song.entity");
+const artist_entity_1 = require("./artist/artist.entity");
+const user_entity_1 = require("./user/user.entity");
+const playlist_entity_1 = require("./playlist/playlist.entity");
+const playlist_module_1 = require("./playlist/playlist.module");
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 let AppModule = class AppModule {
@@ -21,10 +27,19 @@ let AppModule = class AppModule {
         consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes(songs_controller_1.SongsController);
     }
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [songs_module_1.SongsModule,
+        imports: [songs_module_1.SongsModule, playlist_module_1.PlayListModule,
+            typeorm_1.TypeOrmModule.forRoot({
+                type: 'postgres',
+                host: 'localhost',
+                port: 5432,
+                username: 'postgres',
+                password: 'root',
+                database: 'Nestjs_Testing',
+                entities: [song_entity_1.Song, artist_entity_1.Artist, user_entity_1.User, playlist_entity_1.Playlist],
+                synchronize: true
+            })
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {
@@ -39,4 +54,5 @@ exports.AppModule = AppModule = __decorate([
             }],
     })
 ], AppModule);
+exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

@@ -15,7 +15,6 @@ const user_entity_1 = require("../user/user.entity");
 const typeorm_1 = require("typeorm");
 let Artist = class Artist {
 };
-exports.Artist = Artist;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -29,7 +28,8 @@ __decorate([
     (0, typeorm_1.ManyToMany)(() => song_entity_1.Song, (song) => song.artists),
     __metadata("design:type", Array)
 ], Artist.prototype, "songs", void 0);
-exports.Artist = Artist = __decorate([
+Artist = __decorate([
     (0, typeorm_1.Entity)("artists")
 ], Artist);
+exports.Artist = Artist;
 //# sourceMappingURL=artist.entity.js.map

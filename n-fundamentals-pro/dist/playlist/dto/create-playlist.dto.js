@@ -9,30 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Playlist = void 0;
-const song_entity_1 = require("../songs/song.entity");
-const user_entity_1 = require("../user/user.entity");
-const typeorm_1 = require("typeorm");
-let Playlist = class Playlist {
-};
+exports.CreatePlayListDto = void 0;
+const class_validator_1 = require("class-validator");
+class CreatePlayListDto {
+}
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Playlist.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], Playlist.prototype, "name", void 0);
+], CreatePlayListDto.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => song_entity_1.Song, (song) => song.playList),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsNumber)({}, { each: true }),
     __metadata("design:type", Array)
-], Playlist.prototype, "songs", void 0);
+], CreatePlayListDto.prototype, "songs", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.playLists),
-    __metadata("design:type", user_entity_1.User)
-], Playlist.prototype, "user", void 0);
-Playlist = __decorate([
-    (0, typeorm_1.Entity)('playlists')
-], Playlist);
-exports.Playlist = Playlist;
-//# sourceMappingURL=playlist.entity.js.map
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreatePlayListDto.prototype, "user", void 0);
+exports.CreatePlayListDto = CreatePlayListDto;
+//# sourceMappingURL=create-playlist.dto.js.map

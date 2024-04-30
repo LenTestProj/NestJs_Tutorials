@@ -1,6 +1,7 @@
 import { Playlist } from "src/playlist/playlist.entity";
-import { Column, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
+@Entity('users') 
 export class User{
     @PrimaryGeneratedColumn()
     id:number;

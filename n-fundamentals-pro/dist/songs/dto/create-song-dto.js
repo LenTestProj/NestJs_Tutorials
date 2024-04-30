@@ -13,7 +13,6 @@ exports.CreateSongDTO = void 0;
 const class_validator_1 = require("class-validator");
 class CreateSongDTO {
 }
-exports.CreateSongDTO = CreateSongDTO;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
@@ -35,4 +34,5 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Date)
 ], CreateSongDTO.prototype, "duration", void 0);
+exports.CreateSongDTO = CreateSongDTO;
 //# sourceMappingURL=create-song-dto.js.map

@@ -12,22 +12,28 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.playListController = void 0;
 const common_1 = require("@nestjs/common");
-const DevConfigService_1 = require("./common/providers/DevConfigService");
-let AppService = class AppService {
-    constructor(devConfigService, config) {
-        this.devConfigService = devConfigService;
-        this.config = config;
+const playlist_services_1 = require("./playlist.services");
+const create_playlist_dto_1 = require("./dto/create-playlist.dto");
+let playListController = class playListController {
+    constructor(playListService) {
+        this.playListService = playListService;
     }
-    getHello() {
-        return 'Hello I am learning NestJS! ' + this.devConfigService.getDBHOST() + " PORT = " + this.config.port;
+    create(playListDto) {
+        return this.playListService.create(playListDto);
     }
 };
-AppService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(1, (0, common_1.Inject)('CONFIG')),
-    __metadata("design:paramtypes", [DevConfigService_1.DevConfigService, Object])
-], AppService);
-exports.AppService = AppService;
-//# sourceMappingURL=app.service.js.map
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_playlist_dto_1.CreatePlayListDto]),
+    __metadata("design:returntype", Promise)
+], playListController.prototype, "create", null);
+playListController = __decorate([
+    (0, common_1.Controller)('playlist'),
+    __metadata("design:paramtypes", [playlist_services_1.PlayListService])
+], playListController);
+exports.playListController = playListController;
+//# sourceMappingURL=playlist.controller.js.map

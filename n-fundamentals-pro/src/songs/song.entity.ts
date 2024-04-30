@@ -1,8 +1,8 @@
 import { Artist } from 'src/artist/artist.entity';
 import { Playlist } from 'src/playlist/playlist.entity';
 import {Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
-@Entity('songs')  //songs is the name in the database table
 
+@Entity('songs')  //songs is the name in the database table
 export class Song{
     @PrimaryGeneratedColumn()
     id:number;

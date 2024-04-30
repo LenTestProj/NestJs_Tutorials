@@ -10,22 +10,23 @@ import { Song } from './songs/song.entity';
 import { Artist } from './artist/artist.entity';
 import { User } from './user/user.entity';
 import { Playlist } from './playlist/playlist.entity';
+import { PlayListModule } from './playlist/playlist.module';
 
 const devConfig={port:3000};
 const proConfig={port:4000};
 
 @Module({
-  imports: [SongsModule,
-    // TypeOrmModule.forRoot({
-    //     type:'postgres',
-    //     host:'localhost',
-    //     port:5432,
-    //     username:'test',
-    //     password:'test',
-    //     database:'trsting',
-    //     entities:[Song,Artist,User,Playlist],
-    //     synchronize:true
-    // }) 
+  imports: [SongsModule,PlayListModule,
+    TypeOrmModule.forRoot({
+        type:'postgres',
+        host:'localhost',
+        port:5432,
+        username:'postgres',
+        password:'root',
+        database:'Nestjs_Testing',
+        entities:[Song,Artist,User,Playlist],
+        synchronize:true
+    }) 
   ],
   controllers: [AppController],
   providers: [AppService,{

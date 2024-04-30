@@ -21,8 +21,8 @@ let SongsService = class SongsService {
         return this.songs;
     }
 };
-exports.SongsService = SongsService;
-exports.SongsService = SongsService = __decorate([
+SongsService = __decorate([
     (0, common_1.Injectable)()
 ], SongsService);
+exports.SongsService = SongsService;
 //# sourceMappingURL=songs.service.js.map
