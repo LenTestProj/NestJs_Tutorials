@@ -32,3 +32,44 @@ Content-Type: application/json
     "songs":[6],
     "user":2
 }
+
+
+### ADD NEW SONG
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+   "title":"lasting lover 2",
+   "artists":[
+        "Sigala",
+        "Martin",
+        "John"
+   ],
+   "releasedDate":"2022-09-29",
+   "duration":"02:34",
+   "lyrics":"Shy, you're my adrenaline. Brought out this other side of me. You dont even know controlling my whole anatomy" 
+}
+
+###FETCH ALL SONGS
+GET http://localhost:3000/songs
+
+###FETCH ONE SONG
+GET http://localhost:3000/songs/2
+
+###UPDATE ONE RECORD
+PUT http://localhost:3000/songs/3
+Content-Type: application/json
+
+{
+   "title":"Animals",
+   "artists":[
+        "Martin"
+   ],
+   "releasedDate":"2022-02-02",
+   "duration":"03:43",
+   "lyrics":"ANIM, you're my adrenaline. Brought out this other side of me. You dont even know controlling my whole anatomy" 
+}
+
+
+###REMOVE ONE SONG
+DELETE http://localhost:3000/songs/2

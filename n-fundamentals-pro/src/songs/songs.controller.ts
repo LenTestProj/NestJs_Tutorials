@@ -2,6 +2,9 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
 import { Connection } from 'src/common/constants/constant';
+import { Song } from './song.entity';
+import { DeleteResult, UpdateResult } from 'typeorm';
+import { UpdateSongDTO } from './dto/update-song-dto';
 
 @Controller('songs')
 export class SongsController {
@@ -19,7 +22,7 @@ export class SongsController {
     }
 
     @Get()
-    findAll(){
+    findAll():Promise<Song[]>{
         try {
             return this.songsService.findAll();    
         } catch (error) {
@@ -31,18 +34,21 @@ export class SongsController {
     @Get(":id")
     findOne(
         @Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number,
-    ){
-        return 'fetch song based on the id specified: '+typeof id
+    ):Promise<Song>{
+        return this.songsService.findOne(id);
     }
 
     @Put(":id")
-    update(){
-        return 'Update song based on Id'
+    update(
+        @Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id:number,
+        @Body() updateSongDTO:UpdateSongDTO
+    ):Promise<UpdateResult>{
+        return this.songsService.update(id,updateSongDTO)
     }
 
     @Delete(":id")
-    delete(){
-        return 'Delete song based on Id'
+    delete(@Param('id', new ParseIntPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number):Promise<DeleteResult>{
+        return this.songsService.remove(id)
     }
     
 }

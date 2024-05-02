@@ -11,6 +11,8 @@ const common_1 = require("@nestjs/common");
 const songs_controller_1 = require("./songs.controller");
 const songs_service_1 = require("./songs.service");
 const constant_1 = require("../common/constants/constant");
+const typeorm_1 = require("@nestjs/typeorm");
+const song_entity_1 = require("./song.entity");
 const mockSongsService = {
     findAll() {
         return [{ id: 1, title: 'Lasting Lover' }];
@@ -20,6 +22,7 @@ let SongsModule = class SongsModule {
 };
 SongsModule = __decorate([
     (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([song_entity_1.Song])],
         controllers: [songs_controller_1.SongsController],
         providers: [songs_service_1.SongsService,
             {

@@ -25,15 +25,6 @@ let PlayListService = class PlayListService {
         this.songRepo = songRepo;
         this.userRepo = userRepo;
     }
-    async create(playListDTO) {
-        const playList = new playlist_entity_1.Playlist();
-        playList.name = playListDTO.name;
-        const songs = await this.songRepo.findByIds(playListDTO.songs);
-        playList.songs = songs;
-        const user = await this.userRepo.findOneBy({ id: playListDTO.user });
-        playList.user = user;
-        return this.playListRepo.save(playList);
-    }
 };
 PlayListService = __decorate([
     (0, common_1.Injectable)(),

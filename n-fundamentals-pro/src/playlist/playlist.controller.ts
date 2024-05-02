@@ -7,8 +7,8 @@ import { Playlist } from "./playlist.entity";
 export class playListController{
     constructor(private playListService:PlayListService){}
 
-    @Post()
-    create(@Body() playListDto:CreatePlayListDto):Promise<Playlist>{
-        return this.playListService.create(playListDto)
-    }
+    // @Post()
+    // create(@Body() playListDto:CreatePlayListDto):Promise<Playlist>{
+    //     return this.playListService.create(playListDto)
+    // }
 }

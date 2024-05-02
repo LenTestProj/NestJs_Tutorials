@@ -9,36 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Song = void 0;
-const typeorm_1 = require("typeorm");
-let Song = class Song {
-};
+exports.UpdateSongDTO = void 0;
+const class_validator_1 = require("class-validator");
+class UpdateSongDTO {
+}
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
-], Song.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], Song.prototype, "title", void 0);
+], UpdateSongDTO.prototype, "title", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "date" }),
-    __metadata("design:type", Date)
-], Song.prototype, "releasedDate", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'time' }),
-    __metadata("design:type", Date)
-], Song.prototype, "duration", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: "text" }),
-    __metadata("design:type", String)
-], Song.prototype, "lyrics", void 0);
-__decorate([
-    (0, typeorm_1.Column)("varchar", { array: true }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.IsString)({ each: true }),
     __metadata("design:type", Array)
-], Song.prototype, "artists", void 0);
-Song = __decorate([
-    (0, typeorm_1.Entity)('songs')
-], Song);
-exports.Song = Song;
-//# sourceMappingURL=song.entity.js.map
+], UpdateSongDTO.prototype, "artists", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsDateString)(),
+    __metadata("design:type", Date)
+], UpdateSongDTO.prototype, "releasedDate", void 0);
+__decorate([
+    (0, class_validator_1.IsMilitaryTime)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Date)
+], UpdateSongDTO.prototype, "duration", void 0);
+__decorate([
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UpdateSongDTO.prototype, "lyrics", void 0);
+exports.UpdateSongDTO = UpdateSongDTO;
+//# sourceMappingURL=update-song-dto.js.map

@@ -34,5 +34,10 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", Date)
 ], CreateSongDTO.prototype, "duration", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateSongDTO.prototype, "lyrics", void 0);
 exports.CreateSongDTO = CreateSongDTO;
 //# sourceMappingURL=create-song-dto.js.map

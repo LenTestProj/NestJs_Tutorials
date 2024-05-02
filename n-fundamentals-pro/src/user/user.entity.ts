@@ -18,6 +18,6 @@ export class User{
     @Column()
     password:string;
 
-    @OneToMany(()=>Playlist,(playlist)=>playlist.user)
-    playLists:Playlist[];
+    // @OneToMany(()=>Playlist,(playlist)=>playlist.user)
+    // playLists:Playlist[];
 }

@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const playlist_entity_1 = require("../playlist/playlist.entity");
 const typeorm_1 = require("typeorm");
 let User = class User {
 };
@@ -34,10 +33,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => playlist_entity_1.Playlist, (playlist) => playlist.user),
-    __metadata("design:type", Array)
-], User.prototype, "playLists", void 0);
 User = __decorate([
     (0, typeorm_1.Entity)('users')
 ], User);

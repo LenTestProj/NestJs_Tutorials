@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -16,13 +19,15 @@ const songs_controller_1 = require("./songs/songs.controller");
 const DevConfigService_1 = require("./common/providers/DevConfigService");
 const typeorm_1 = require("@nestjs/typeorm");
 const song_entity_1 = require("./songs/song.entity");
-const artist_entity_1 = require("./artist/artist.entity");
-const user_entity_1 = require("./user/user.entity");
-const playlist_entity_1 = require("./playlist/playlist.entity");
 const playlist_module_1 = require("./playlist/playlist.module");
+const typeorm_2 = require("typeorm");
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 let AppModule = class AppModule {
+    constructor(dataSource) {
+        this.dataSource = dataSource;
+        console.log('dbName ', dataSource.driver.database);
+    }
     configure(consumer) {
         consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes(songs_controller_1.SongsController);
     }
@@ -32,12 +37,12 @@ AppModule = __decorate([
         imports: [songs_module_1.SongsModule, playlist_module_1.PlayListModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
+                database: 'spotify-clone',
                 host: 'localhost',
                 port: 5432,
                 username: 'postgres',
                 password: 'root',
-                database: 'Nestjs_Testing',
-                entities: [song_entity_1.Song, artist_entity_1.Artist, user_entity_1.User, playlist_entity_1.Playlist],
+                entities: [song_entity_1.Song],
                 synchronize: true
             })
         ],
@@ -52,7 +57,8 @@ AppModule = __decorate([
                     return process.env.NODE_ENV === 'development' ? devConfig : proConfig;
                 }
             }],
-    })
+    }),
+    __metadata("design:paramtypes", [typeorm_2.DataSource])
 ], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

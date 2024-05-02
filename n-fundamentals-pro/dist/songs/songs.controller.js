@@ -16,6 +16,7 @@ exports.SongsController = void 0;
 const common_1 = require("@nestjs/common");
 const songs_service_1 = require("./songs.service");
 const create_song_dto_1 = require("./dto/create-song-dto");
+const update_song_dto_1 = require("./dto/update-song-dto");
 let SongsController = class SongsController {
     constructor(songsService, connection) {
         this.songsService = songsService;
@@ -35,13 +36,13 @@ let SongsController = class SongsController {
         }
     }
     findOne(id) {
-        return 'fetch song based on the id specified: ' + typeof id;
+        return this.songsService.findOne(id);
     }
-    update() {
-        return 'Update song based on Id';
+    update(id, updateSongDTO) {
+        return this.songsService.update(id, updateSongDTO);
     }
-    delete() {
-        return 'Delete song based on Id';
+    delete(id) {
+        return this.songsService.remove(id);
     }
 };
 __decorate([
@@ -55,26 +56,29 @@ __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], SongsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)('id', new common_1.ParseIntPipe({ errorHttpStatusCode: common_1.HttpStatus.NOT_ACCEPTABLE }))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], SongsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Param)('id', new common_1.ParseIntPipe({ errorHttpStatusCode: common_1.HttpStatus.NOT_ACCEPTABLE }))),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Number, update_song_dto_1.UpdateSongDTO]),
+    __metadata("design:returntype", Promise)
 ], SongsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(":id"),
+    __param(0, (0, common_1.Param)('id', new common_1.ParseIntPipe({ errorHttpStatusCode: common_1.HttpStatus.NOT_ACCEPTABLE }))),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
 ], SongsController.prototype, "delete", null);
 SongsController = __decorate([
     (0, common_1.Controller)('songs'),
