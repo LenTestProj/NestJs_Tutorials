@@ -35,7 +35,7 @@ const proConfig={port:4000};
             port:5432,
             username:'postgres',
             password:'root',
-            entities:[Song],
+            entities:[Song,Artist,User],
             synchronize:true
         }) 
     ],

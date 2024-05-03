@@ -27,9 +27,10 @@ let SongsController = class SongsController {
     create(createSongDTO) {
         return this.songsService.create(createSongDTO);
     }
-    findAll() {
+    findAll(page = 1, limit = 10) {
         try {
-            return this.songsService.findAll();
+            limit = limit > 100 ? 100 : limit;
+            return this.songsService.paginate({ page, limit });
         }
         catch (error) {
             throw new common_1.HttpException("server error: ", common_1.HttpStatus.INTERNAL_SERVER_ERROR);
@@ -54,8 +55,10 @@ __decorate([
 ], SongsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(10), common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", Promise)
 ], SongsController.prototype, "findAll", null);
 __decorate([

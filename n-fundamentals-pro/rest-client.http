@@ -39,19 +39,19 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-   "title":"lasting lover 2",
+   "title":"New Song 5",
    "artists":[
         "Sigala",
         "Martin",
         "John"
    ],
-   "releasedDate":"2022-09-29",
+   "releasedDate":"2023-05-11",
    "duration":"02:34",
    "lyrics":"Shy, you're my adrenaline. Brought out this other side of me. You dont even know controlling my whole anatomy" 
 }
 
 ###FETCH ALL SONGS
-GET http://localhost:3000/songs
+GET http://localhost:3000/songs?page=1&limit=2
 
 ###FETCH ONE SONG
 GET http://localhost:3000/songs/2

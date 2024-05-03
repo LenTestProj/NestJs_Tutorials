@@ -19,6 +19,8 @@ const songs_controller_1 = require("./songs/songs.controller");
 const DevConfigService_1 = require("./common/providers/DevConfigService");
 const typeorm_1 = require("@nestjs/typeorm");
 const song_entity_1 = require("./songs/song.entity");
+const artist_entity_1 = require("./artist/artist.entity");
+const user_entity_1 = require("./user/user.entity");
 const playlist_module_1 = require("./playlist/playlist.module");
 const typeorm_2 = require("typeorm");
 const devConfig = { port: 3000 };
@@ -42,7 +44,7 @@ AppModule = __decorate([
                 port: 5432,
                 username: 'postgres',
                 password: 'root',
-                entities: [song_entity_1.Song],
+                entities: [song_entity_1.Song, artist_entity_1.Artist, user_entity_1.User],
                 synchronize: true
             })
         ],

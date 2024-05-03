@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const song_entity_1 = require("./song.entity");
 const typeorm_2 = require("@nestjs/typeorm");
+const nestjs_typeorm_paginate_1 = require("nestjs-typeorm-paginate");
 let SongsService = class SongsService {
     constructor(songRepository) {
         this.songRepository = songRepository;
@@ -42,6 +43,11 @@ let SongsService = class SongsService {
     }
     remove(id) {
         return this.songRepository.delete(id);
+    }
+    paginate(options) {
+        const queryBuilder = this.songRepository.createQueryBuilder('c');
+        queryBuilder.orderBy('c.releasedDate', 'DESC');
+        return (0, nestjs_typeorm_paginate_1.paginate)(queryBuilder, options);
     }
 };
 SongsService = __decorate([
