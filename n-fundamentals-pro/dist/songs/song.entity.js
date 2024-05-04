@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Song = void 0;
+const artist_entity_1 = require("../artist/artist.entity");
 const typeorm_1 = require("typeorm");
 let Song = class Song {
 };
@@ -35,6 +36,8 @@ __decorate([
 ], Song.prototype, "lyrics", void 0);
 __decorate([
     (0, typeorm_1.Column)("varchar", { array: true }),
+    (0, typeorm_1.ManyToMany)(() => artist_entity_1.Artist, (artist) => artist.songs, { cascade: true }),
+    (0, typeorm_1.JoinTable)({ name: 'songs_artists' }),
     __metadata("design:type", Array)
 ], Song.prototype, "artists", void 0);
 Song = __decorate([

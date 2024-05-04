@@ -18,9 +18,11 @@ const typeorm_1 = require("typeorm");
 const song_entity_1 = require("./song.entity");
 const typeorm_2 = require("@nestjs/typeorm");
 const nestjs_typeorm_paginate_1 = require("nestjs-typeorm-paginate");
+const artist_entity_1 = require("../artist/artist.entity");
 let SongsService = class SongsService {
-    constructor(songRepository) {
+    constructor(songRepository, artistRepository) {
         this.songRepository = songRepository;
+        this.artistRepository = artistRepository;
         this.songs = [];
     }
     async create(songDTO) {
@@ -30,6 +32,8 @@ let SongsService = class SongsService {
         song.duration = songDTO.duration;
         song.lyrics = songDTO.lyrics;
         song.releasedDate = songDTO.releasedDate;
+        const artists = await this.artistRepository.findByIds(songDTO.artists);
+        song.artists = artists;
         return await this.songRepository.save(song);
     }
     findAll() {
@@ -53,7 +57,9 @@ let SongsService = class SongsService {
 SongsService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_2.InjectRepository)(song_entity_1.Song)),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __param(1, (0, typeorm_2.InjectRepository)(artist_entity_1.Artist)),
+    __metadata("design:paramtypes", [typeorm_1.Repository,
+        typeorm_1.Repository])
 ], SongsService);
 exports.SongsService = SongsService;
 //# sourceMappingURL=songs.service.js.map

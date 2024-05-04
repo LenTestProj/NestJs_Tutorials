@@ -23,6 +23,8 @@ const artist_entity_1 = require("./artist/artist.entity");
 const user_entity_1 = require("./user/user.entity");
 const playlist_module_1 = require("./playlist/playlist.module");
 const typeorm_2 = require("typeorm");
+const auth_module_1 = require("./auth/auth.module");
+const user_module_1 = require("./user/user.module");
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 let AppModule = class AppModule {
@@ -36,17 +38,17 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [songs_module_1.SongsModule, playlist_module_1.PlayListModule,
+        imports: [songs_module_1.SongsModule, playlist_module_1.PlayListModule, auth_module_1.AuthModule, user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
-                database: 'spotify-clone',
+                database: 'spotify-clone-01',
                 host: 'localhost',
                 port: 5432,
                 username: 'postgres',
                 password: 'root',
                 entities: [song_entity_1.Song, artist_entity_1.Artist, user_entity_1.User],
                 synchronize: true
-            })
+            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {

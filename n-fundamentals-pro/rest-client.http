@@ -14,7 +14,7 @@ Content-Type: application/json
     "releasedDate":"2022-09-29",
     "duration":"02:34",
     "title":"lasting lover 2",
-    "artists":["sigla"]
+    "artists":[1,3]
 }
 
 ### UPDATE SONGS REQUEST
@@ -39,11 +39,9 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-   "title":"New Song 5",
+   "title":"You for Me 3",
    "artists":[
-        "Sigala",
-        "Martin",
-        "John"
+        1,2
    ],
    "releasedDate":"2023-05-11",
    "duration":"02:34",
@@ -73,3 +71,14 @@ Content-Type: application/json
 
 ###REMOVE ONE SONG
 DELETE http://localhost:3000/songs/2
+
+###SIGNUP USER
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName":"john",
+    "lastName":"doe",
+    "email":"john@gmail.com",
+    "password":"123456"
+}

@@ -1,4 +1,5 @@
-import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsString } from "class-validator";
+import { IsArray, IsDateString, IsMilitaryTime, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Artist } from "src/artist/artist.entity";
 
 export class CreateSongDTO{
     @IsString()
@@ -7,8 +8,8 @@ export class CreateSongDTO{
 
     @IsNotEmpty()
     @IsArray()
-    @IsString({each:true})
-    readonly artists:string[];
+    @IsNumber({},{each:true})
+    readonly artists:Artist[];
 
     @IsNotEmpty()
     @IsDateString()

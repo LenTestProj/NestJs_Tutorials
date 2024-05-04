@@ -3,9 +3,11 @@ import { Song } from './song.entity';
 import { CreateSongDTO } from './dto/create-song-dto';
 import { UpdateSongDTO } from './dto/update-song-dto';
 import { Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
+import { Artist } from 'src/artist/artist.entity';
 export declare class SongsService {
     private songRepository;
-    constructor(songRepository: Repository<Song>);
+    private artistRepository;
+    constructor(songRepository: Repository<Song>, artistRepository: Repository<Artist>);
     private readonly songs;
     create(songDTO: CreateSongDTO): Promise<Song>;
     findAll(): Promise<Song[]>;
