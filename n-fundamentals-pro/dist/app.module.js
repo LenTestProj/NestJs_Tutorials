@@ -25,6 +25,7 @@ const playlist_module_1 = require("./playlist/playlist.module");
 const typeorm_2 = require("typeorm");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
+const artist_module_1 = require("./artist/artist.module");
 const devConfig = { port: 3000 };
 const proConfig = { port: 4000 };
 let AppModule = class AppModule {
@@ -49,6 +50,7 @@ AppModule = __decorate([
                 entities: [song_entity_1.Song, artist_entity_1.Artist, user_entity_1.User],
                 synchronize: true
             }),
+            artist_module_1.ArtistModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, {

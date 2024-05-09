@@ -14,6 +14,7 @@ import { PlayListModule } from './playlist/playlist.module';
 import { DataSource } from 'typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { ArtistModule } from './artist/artist.module';
 
 const devConfig={port:3000};
 const proConfig={port:4000};
@@ -40,6 +41,7 @@ const proConfig={port:4000};
             entities:[Song,Artist,User],
             synchronize:true
         }),
+        ArtistModule,
     ],
     controllers: [AppController],
     providers: [AppService,{

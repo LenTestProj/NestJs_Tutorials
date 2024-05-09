@@ -9,7 +9,7 @@ export declare class SongsController {
     private songsService;
     private connection;
     constructor(songsService: SongsService, connection: Connection);
-    create(createSongDTO: CreateSongDTO): Promise<Song>;
+    create(createSongDTO: CreateSongDTO, request: any): Promise<Song>;
     findAll(page?: number, limit?: number): Promise<Pagination<Song>>;
     findOne(id: number): Promise<Song>;
     update(id: number, updateSongDTO: UpdateSongDTO): Promise<UpdateResult>;

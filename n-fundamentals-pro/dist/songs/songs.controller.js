@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const songs_service_1 = require("./songs.service");
 const create_song_dto_1 = require("./dto/create-song-dto");
 const update_song_dto_1 = require("./dto/update-song-dto");
+const artist_jwt_guard_1 = require("../auth/artist-jwt-guard");
 let SongsController = class SongsController {
     constructor(songsService, connection) {
         this.songsService = songsService;
@@ -24,7 +25,8 @@ let SongsController = class SongsController {
         console.log('This is connection string: ' + this.connection.CONNECTION_STRING);
     }
     ;
-    create(createSongDTO) {
+    create(createSongDTO, request) {
+        console.log("The user in creating a new song controller is: ", request.user);
         return this.songsService.create(createSongDTO);
     }
     findAll(page = 1, limit = 10) {
@@ -48,9 +50,11 @@ let SongsController = class SongsController {
 };
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(artist_jwt_guard_1.ArtistJWTGuard),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Request)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_song_dto_1.CreateSongDTO]),
+    __metadata("design:paramtypes", [create_song_dto_1.CreateSongDTO, Object]),
     __metadata("design:returntype", void 0)
 ], SongsController.prototype, "create", null);
 __decorate([

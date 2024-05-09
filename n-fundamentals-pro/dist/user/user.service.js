@@ -29,6 +29,13 @@ let UserService = class UserService {
         delete user.password;
         return user;
     }
+    async findOne(data) {
+        const user = await this.userRepository.findOneBy({ email: data.email });
+        if (!user) {
+            throw new common_1.UnauthorizedException('Could not find user');
+        }
+        return user;
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),

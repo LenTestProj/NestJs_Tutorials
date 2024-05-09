@@ -37,11 +37,12 @@ Content-Type: application/json
 ### ADD NEW SONG
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeEBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTUyNTA1MzQsImV4cCI6MTcxNTMzNjkzNH0.ZrQQOcDzG7ZPpvywOMDpGszuCcT2CeIzMWoW0dPdkiw
 
 {
-   "title":"You for Me 3",
+   "title":"Love Again",
    "artists":[
-        1,2
+        1
    ],
    "releasedDate":"2023-05-11",
    "duration":"02:34",
@@ -82,3 +83,34 @@ Content-Type: application/json
     "email":"john@gmail.com",
     "password":"123456"
 }
+
+###LOGIN ARTIST
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email":"martingarrix@gmail.com",
+    "password":"123456"
+}
+
+## Artist Token - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeEBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTUyNTA1MzQsImV4cCI6MTcxNTMzNjkzNH0.ZrQQOcDzG7ZPpvywOMDpGszuCcT2CeIzMWoW0dPdkiw
+
+### GET PROFILE
+GET http://localhost:3000/profile
+Authorization:  Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hcnRpbmdhcnJpeEBnbWFpbC5jb20iLCJ1c2VySWQiOjIsImFydGlzdElkIjoxLCJpYXQiOjE3MTUyNTA1MzQsImV4cCI6MTcxNTMzNjkzNH0.ZrQQOcDzG7ZPpvywOMDpGszuCcT2CeIzMWoW0dPdkiw
+
+
+###LOGIN USER
+POST http://localhost:3000/auth/login 
+Content-Type: application/json
+
+{
+    "email":"john@gmail.com",
+    "password":"123456"
+}
+
+## Access Token - eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3MTUyNDI1MTQsImV4cCI6MTcxNTMyODkxNH0.1kOBgT75Wf2w-jodN019xPBdOVKyDQhWzLIQ4fnEfRM
+
+###Profile
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3MTUyNDI1MTQsImV4cCI6MTcxNTMyODkxNH0.1kOBgT75Wf2w-jodN019xPBdOVKyDQhWzLIQ4fnEfRM
